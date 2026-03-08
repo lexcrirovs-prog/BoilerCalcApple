@@ -60,6 +60,9 @@ struct EconomicsView: View {
                         ))
                     }
 
+                    // Additional CAPEX input
+                    MoneyTextField(label: "Доп. расходы (монтаж, обвязка...)", text: $vm.additionalCapexText, onChanged: { vm.onAdditionalCapexChange($0) })
+
                     // CAPEX card
                     HStack {
                         HStack(spacing: 4) {

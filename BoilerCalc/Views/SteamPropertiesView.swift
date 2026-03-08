@@ -19,9 +19,9 @@ struct SteamPropertiesView: View {
 
                 SliderWithTextField(
                     label: "Давление",
-                    value: $vm.pressureBar,
+                    value: vm.pressureSliderBinding,
                     textValue: $vm.pressureText,
-                    range: 0...16,
+                    range: vm.pressureSliderRange,
                     onSliderChanged: { vm.onPressureSliderChange($0) },
                     onTextChanged: { vm.onPressureChange($0) },
                     unitText: vm.pressureUnit,
@@ -30,9 +30,9 @@ struct SteamPropertiesView: View {
 
                 SliderWithTextField(
                     label: "Температура",
-                    value: $vm.temperatureC,
+                    value: vm.temperatureSliderBinding,
                     textValue: $vm.temperatureText,
-                    range: 99...204.3,
+                    range: vm.temperatureSliderRange,
                     onSliderChanged: { vm.onTemperatureSliderChange($0) },
                     onTextChanged: { vm.onTemperatureChange($0) },
                     unitText: vm.tempUnit,
@@ -41,9 +41,9 @@ struct SteamPropertiesView: View {
 
                 SliderWithTextField(
                     label: "Паропроизводительность",
-                    value: $vm.steamCapacityKgH,
+                    value: vm.capacitySliderBinding,
                     textValue: $vm.steamCapacityText,
-                    range: 0...15000,
+                    range: vm.capacitySliderRange,
                     onSliderChanged: { vm.onSteamCapacitySliderChange($0) },
                     onTextChanged: { vm.onSteamCapacityChange($0) },
                     unitText: vm.capacityUnit,

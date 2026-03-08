@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 class ConverterViewModel: ObservableObject {
-    @Published var selectedGroupIndex: Int = 3  // Default to extended pressure
+    @Published var selectedGroupIndex: Int = 0  // Default to pressure
     @Published var fromUnitIndex: Int = 0
     @Published var toUnitIndex: Int = 1
     @Published var inputText: String = "1"

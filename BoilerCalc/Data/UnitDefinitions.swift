@@ -2,25 +2,8 @@ import Foundation
 
 struct UnitDefinitions {
     static let groups: [UnitGroup] = [
-        // 0: Давление (base: бар)
+        // 0: Давление (base: Па)
         UnitGroup(name: "Давление", units: [
-            UnitDef(name: "бар", toBase: { $0 }, fromBase: { $0 }),
-            UnitDef(name: "кгс/см\u{00B2}", toBase: { $0 / 1.01972 }, fromBase: { $0 * 1.01972 })
-        ]),
-        // 1: Температура (base: °C)
-        UnitGroup(name: "Температура", units: [
-            UnitDef(name: "\u{00B0}C", toBase: { $0 }, fromBase: { $0 }),
-            UnitDef(name: "K", toBase: { $0 - 273.15 }, fromBase: { $0 + 273.15 }),
-            UnitDef(name: "\u{00B0}F", toBase: { ($0 - 32.0) * 5.0 / 9.0 }, fromBase: { $0 * 9.0 / 5.0 + 32.0 })
-        ]),
-        // 2: Паропроизводительность (base: кг/ч)
-        UnitGroup(name: "Паропроизводительность", units: [
-            UnitDef(name: "кг/ч", toBase: { $0 }, fromBase: { $0 }),
-            UnitDef(name: "т/ч", toBase: { $0 * 1000.0 }, fromBase: { $0 / 1000.0 }),
-            UnitDef(name: "кг/с", toBase: { $0 * 3600.0 }, fromBase: { $0 / 3600.0 })
-        ]),
-        // 3: Давление расш. (base: Па)
-        UnitGroup(name: "Давление расш.", units: [
             UnitDef(name: "Па", toBase: { $0 }, fromBase: { $0 }),
             UnitDef(name: "кПа", toBase: { $0 * 1000.0 }, fromBase: { $0 / 1000.0 }),
             UnitDef(name: "МПа", toBase: { $0 * 1_000_000.0 }, fromBase: { $0 / 1_000_000.0 }),
@@ -41,14 +24,14 @@ struct UnitDefinitions {
             UnitDef(name: "ккал/ч", toBase: { $0 * 1.163 }, fromBase: { $0 / 1.163 }),
             UnitDef(name: "BTU/h", toBase: { $0 * 0.29307 }, fromBase: { $0 / 0.29307 })
         ]),
-        // 5: Температура полн. (base: °C)
-        UnitGroup(name: "Температура полн.", units: [
+        // 2: Температура (base: °C)
+        UnitGroup(name: "Температура", units: [
             UnitDef(name: "\u{00B0}C", toBase: { $0 }, fromBase: { $0 }),
             UnitDef(name: "K", toBase: { $0 - 273.15 }, fromBase: { $0 + 273.15 }),
             UnitDef(name: "\u{00B0}F", toBase: { ($0 - 32.0) * 5.0 / 9.0 }, fromBase: { $0 * 9.0 / 5.0 + 32.0 })
         ]),
-        // 6: Расход пара (base: кг/ч)
-        UnitGroup(name: "Расход пара", units: [
+        // 3: Паропроизводительность (base: кг/ч)
+        UnitGroup(name: "Паропроизводительность", units: [
             UnitDef(name: "кг/ч", toBase: { $0 }, fromBase: { $0 }),
             UnitDef(name: "т/ч", toBase: { $0 * 1000.0 }, fromBase: { $0 / 1000.0 }),
             UnitDef(name: "кг/с", toBase: { $0 * 3600.0 }, fromBase: { $0 / 3600.0 }),

@@ -27,6 +27,8 @@ class EconomicsViewModel: ObservableObject {
 
     // CAPEX
     @Published var capex: Double = 0.0
+    @Published var additionalCapex: Double = 0.0
+    @Published var additionalCapexText: String = ""
 
     // Tariff
     @Published var tarifGcal: Double = 0.0
@@ -58,7 +60,7 @@ class EconomicsViewModel: ObservableObject {
         boilerCategory = category
         selectedModel = nil
         useEconomizer = false
-        capex = 0.0
+        capex = additionalCapex
         isCalculated = false
     }
 
@@ -211,10 +213,22 @@ class EconomicsViewModel: ObservableObject {
         }
     }
 
-    private func calculateCapex(model: EconBoilerModel, count: Int, useEconomizer: Bool) -> Double {
+    func onAdditionalCapexChange(_ text: String) {
+        additionalCapexText = text
+        additionalCapex = Formatting.parseMoney(text)
+        if let model = selectedModel {
+            capex = calculateCapex(model: model, count: boilerCount, useEconomizer: useEconomizer, additionalCapex: additionalCapex)
+        } else {
+            capex = additionalCapex
+        }
+        isCalculated = false
+    }
+
+    private func calculateCapex(model: EconBoilerModel, count: Int, useEconomizer: Bool, additionalCapex: Double? = nil) -> Double {
         let boilerCost = Double(model.price) * Double(count)
         let econCost = (useEconomizer && model.economizerPrice != nil) ? Double(model.economizerPrice!) * Double(count) : 0.0
-        return boilerCost + econCost
+        let extra = additionalCapex ?? self.additionalCapex
+        return boilerCost + econCost + extra
     }
 
     func calculate() {
