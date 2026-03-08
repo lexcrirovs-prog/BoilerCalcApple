@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HeatCalculationView: View {
     @StateObject private var vm = HeatCalcViewModel()
+    @State private var showLeadForm = false
 
     @Environment(\.themeColors) var colors
 
@@ -108,11 +109,28 @@ struct HeatCalculationView: View {
                             WaterBoilerCard(boiler: boiler)
                         }
                     }
+
+                    Button(action: { showLeadForm = true }) {
+                        Text("Получить коммерческое предложение")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(colors.primary)
+                            .foregroundColor(colors.onPrimary)
+                            .cornerRadius(12)
+                    }
+                    .padding(.top, 8)
                 }
             }
             .padding()
         }
         .background(colors.background)
+        .sheet(isPresented: $showLeadForm) {
+            LeadFormSheet(
+                title: "Коммерческое предложение",
+                context: "Тепло: Q=\(Formatting.formatTrimmed(vm.qTotal, decimals: 1)) кВт",
+                onDismiss: { showLeadForm = false }
+            )
+        }
     }
 
     private func binding(for building: Building) -> Binding<Building> {
